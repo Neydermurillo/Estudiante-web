@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Soccer.web.Data.Entities;
+using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Soccer.web.Data
@@ -19,10 +21,43 @@ namespace Soccer.web.Data
             await CheckTournamentsAsync();
         }
 
-        private Task CheckTeamsAsync()
+        private async Task CheckTeamsAsync()
         {
-            throw new NotImplementedException();
+            if (!_context.Teams.Any())
+            {
+                AddTeam("America");
+                AddTeam("Argentina");
+                AddTeam("Bolivia");
+                AddTeam("Brasil");
+                AddTeam("Bucaramanga");
+                AddTeam("Canada");
+                AddTeam("Chile");
+                AddTeam("Colombia");
+                AddTeam("Costa Rica");
+                AddTeam("Ecuador");
+                AddTeam("Honduras");
+                AddTeam("Junior");
+                AddTeam("Medellin");
+                AddTeam("Mexico");
+                AddTeam("Millonarios");
+                AddTeam("Nacional");
+                AddTeam("Once Caldas");
+                AddTeam("Panama");
+                AddTeam("Paraguay");
+                AddTeam("Peru");
+                AddTeam("Santa Fe");
+                AddTeam("Uruguay");
+                AddTeam("USA");
+                AddTeam("Venezuela");
+                await _context.SaveChangesAsync();
+            }
         }
+
+        private void AddTeam(string name)
+        {
+            _context.Teams.Add(new TeamEntity { Name = name, LogoPth = $"~/images/Teams/{name}.jpg" });
+        }
+
 
         private Task CheckTournamentsAsync()
         {
