@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Soccer.web.Data.Entities
 {
@@ -18,7 +15,9 @@ namespace Soccer.web.Data.Entities
 
         public ICollection<GroupDetailEntity> GroupDetails { get; set; }
 
-        public ICollection<MatchEntity> matches { get; set; }
-
+        
+        
+        public ICollection<MatchEntity> Matches { get; set; }
+        
     }
 }

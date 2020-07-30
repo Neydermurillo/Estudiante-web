@@ -37,8 +37,7 @@ namespace Soccer.web.Data.Entities
         [Display(Name = "Logo")]
         public string LogoPath { get; set; }
 
-        [Display(Name = "Logo")]
-        public string LogoPth { get; set; }
+       
 
         public ICollection<GroupEntity> Groups { get; set; }
     }
