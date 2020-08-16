@@ -1,4 +1,5 @@
-﻿using Soccer.web.Data.Entities;
+﻿using Soccer.Common.Models;
+using Soccer.web.Data.Entities;
 using Soccer.web.Models;
 using Soccer.Web.Models;
 using System;
@@ -30,6 +31,10 @@ namespace Soccer.web.Helpers
         Task<MatchEntity> ToMatchEntityAsync(MatchViewModel model, bool isNew);
 
         MatchViewModel ToMatchViewModel(MatchEntity matchEntity);
+
+        TournamentResponse ToTournamentResponse(TournamentEntity tournamentEntity);
+
+        List<TournamentResponse> ToTournamentResponse(List<TournamentEntity> tournamentEntities);
 
     }
 }
