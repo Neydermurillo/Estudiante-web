@@ -1,6 +1,7 @@
 ﻿using Soccer.Common.Models;
 using Soccer.web.Data.Entities;
 using Soccer.web.Models;
+using Soccer.Web.Data.Entities;
 using Soccer.Web.Models;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,11 @@ namespace Soccer.web.Helpers
 {
     public interface IConverterHelper
     {
+
+        PredictionResponse ToPredictionResponse(PredictionEntity predictionEntity);
+
+        MatchResponse ToMatchResponse(MatchEntity matchEntity);
+
         TeamEntity ToTeamEntity(TeamViewModel model, string path, bool isNew);
 
         TeamViewModel ToTeamViewModel(TeamEntity teamEntity);
