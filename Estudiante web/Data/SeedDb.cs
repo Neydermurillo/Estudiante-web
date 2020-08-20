@@ -37,7 +37,7 @@ namespace Soccer.web.Data
         {
             if (!_context.Predictions.Any())
             {
-                foreach (var user in _context.Users)
+                foreach (UserEntity user in _context.Users)
                 {
                     if (user.UserType == UserType.User)
                     {
@@ -51,8 +51,8 @@ namespace Soccer.web.Data
 
         private void AddPrediction(UserEntity user)
         {
-            var random = new Random();
-            foreach (var match in _context.Matches)
+            Random random = new Random();
+            foreach (MatchEntity match in _context.Matches)
             {
                 _context.Predictions.Add(new PredictionEntity
                 {
@@ -66,13 +66,13 @@ namespace Soccer.web.Data
 
 
         private async Task<UserEntity> CheckUserAsync(
-    string document,
-    string firstName,
-    string lastName,
-    string email,
-    string phone,
-    string address,
-    UserType userType)
+            string document,
+            string firstName,
+            string lastName,
+            string email,
+            string phone,
+            string address,
+            UserType userType)
         {
             UserEntity user = await _userHelper.GetUserAsync(email);
             if (user == null)
@@ -92,6 +92,10 @@ namespace Soccer.web.Data
 
                 await _userHelper.AddUserAsync(user, "123456");
                 await _userHelper.AddUserToRoleAsync(user, userType.ToString());
+
+                var token = await _userHelper.GenerateEmailConfirmationTokenAsync(user);
+                await _userHelper.ConfirmEmailAsync(user, token);
+
             }
 
             return user;
@@ -219,8 +223,8 @@ namespace Soccer.web.Data
                                  }
                              }
                         },
-                        new GroupEntity
-                        {
+                             new GroupEntity
+                             {
                              Name = "B",
                              GroupDetails = new List<GroupDetailEntity>
                              {
